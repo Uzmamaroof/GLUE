@@ -15,7 +15,10 @@ import math
 import statistics
 from tqdm.auto import tqdm
 from multiprocessing import Pool
+import multiprocessing as mp
 
+
+print("imports done")
 #plt.style.use('https://raw.githubusercontent.com/TDAmeritrade/stumpy/main/docs/stumpy.mplstyle')
 
 
@@ -27,6 +30,8 @@ from multiprocessing import Pool
 raw_data = np.load("../NoDef.npz")
 raw_labels = raw_data['labels']
 raw_traces = raw_data['traces']
+
+print("data loaded")
 
 
 # In[4]:
@@ -183,7 +188,6 @@ def calculate_scores_threaded(
     #print(starmap)
     #print("Comparisons to make: " + str(len(starmap)))
     
-    
     with Pool(num_threads) as p:
         result = p.starmap(stumpy.gpu_mpdist, starmap)
         #print(result)
@@ -199,8 +203,7 @@ def calculate_scores_threaded(
 # SECOND VERSION - MULTI THREAD
 
 final_scores = np.zeros((100,100))
-
-
+mp.set_start_method('spawn')
 
 
 for i in tqdm(range(100)):
