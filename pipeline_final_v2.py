@@ -4,9 +4,7 @@
 # In[1]:
 
 import stumpy
-from stumpy import core
 from stumpy.gpu_stump import gpu_stump
-from stumpy.gpu_aampdist import gpu_aampdist
 
 import pandas as pd
 import numpy as np
@@ -198,8 +196,8 @@ def calculate_scores_threaded(
     
     partial_gpu_stump = functools.partial(
         gpu_stump,
-        T_A_subseq_isconstant=T_A_subseq_isconstant,
-        T_B_subseq_isconstant=T_B_subseq_isconstant,
+        T_A_subseq_isconstant=None,
+        T_B_subseq_isconstant=None,
     )
     
     starmap = []
