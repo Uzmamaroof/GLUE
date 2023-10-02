@@ -212,8 +212,6 @@ def calculate_scores_threaded(
 # SECOND VERSION - MULTI THREAD
 
 final_scores = np.zeros((100,100))
-mp.set_start_method('spawn')
-
 
 for i in tqdm(range(100)):
     for j in tqdm(range(i,100)):
