@@ -200,7 +200,7 @@ if __name__ == '__main__':
         #print("Comparisons to make: " + str(len(starmap)))
         
         with Pool(num_threads) as p:
-            result = p.starmap(stumpy.mpdist, starmap)
+            result = p.starmap(stumpy.gpu_mpdist, starmap)
             #print(result)
         
         
