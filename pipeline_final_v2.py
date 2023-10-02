@@ -209,7 +209,7 @@ def calculate_scores_threaded(
             s2 = s2_sample[j].astype('float64')
             length = min(subseq_len, len(s1), len(s2))
             
-            starmap.append((s1,s2,length,0.05,partial_gpu_stump,0.05,None,None,None,None))
+            starmap.append((s1,s2,length,0.05,partial_gpu_stump,None,None,None,None))
     
 #     print(starmap)
 #     print("Comparisons to make: " + str(len(starmap)))
