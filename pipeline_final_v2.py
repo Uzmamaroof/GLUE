@@ -217,7 +217,7 @@ if __name__ == '__main__':
 
     for i in tqdm(range(100)):
         for j in tqdm(range(i,100)):
-            final_scores[i][j] = calculate_scores_threaded(traces[i],traces[j],sample_size=2,subseq_len=250)
+            final_scores[i][j] = calculate_scores_threaded(traces[i],traces[j],sample_size=50,subseq_len=250, num_threads=2500)
 
 
     # In[ ]:
