@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 import pandas as pd
 import stumpy
@@ -17,12 +17,21 @@ from tqdm.auto import tqdm
 from multiprocessing import Pool
 import multiprocessing as mp
 
-
 print("imports done")
 #plt.style.use('https://raw.githubusercontent.com/TDAmeritrade/stumpy/main/docs/stumpy.mplstyle')
 
 
-# In[3]:
+# In[2]:
+
+
+try:
+   mp.set_start_method('spawn', force=True)
+   print("Spawned")
+except RuntimeError:
+   pass
+
+
+# In[ ]:
 
 
 #steam_df = pd.read_csv("https://zenodo.org/record/4273921/files/STUMPY_Basics_steamgen.csv?download=1")
@@ -34,13 +43,13 @@ raw_traces = raw_data['traces']
 print("data loaded")
 
 
-# In[4]:
+# In[ ]:
 
 
 trace_ids = list(set(raw_labels))
 
 
-# In[5]:
+# In[ ]:
 
 
 '''
@@ -77,14 +86,14 @@ def process(trace, mode='f', granularity=0.01, remove_zeroes=True, maxlen=10000)
         raise TypeError("mode must be one of: f,p,n,z")
 
 
-# In[6]:
+# In[ ]:
 
 
 traces = {id: [None] * 4500 for id in trace_ids}
 indices = {id: 0 for id in trace_ids}
 
 
-# In[7]:
+# In[ ]:
 
 
 #print(raw_traces[345][0:20])
@@ -94,7 +103,7 @@ indices = {id: 0 for id in trace_ids}
 #print(test[9950:])
 
 
-# In[8]:
+# In[ ]:
 
 
 # dictionary of all the traces as 2D numpy arrays
@@ -108,7 +117,7 @@ for i in tqdm(range(len(raw_traces))):
     indices[raw_labels[i]] += 1
 
 
-# In[9]:
+# In[ ]:
 
 
 print(len(traces))
@@ -118,7 +127,7 @@ print(len(traces[38][8]))
 # print(len(traces[45][50]))
 
 
-# In[10]:
+# In[ ]:
 
 
 # def get_sample_index(trace_list, mode):
@@ -142,7 +151,7 @@ def generate_primary_sample(trace_list, mode='mode_avg'):
                 return trace
 
 
-# In[13]:
+# In[ ]:
 
 
 '''
@@ -189,14 +198,14 @@ def calculate_scores_threaded(
     #print("Comparisons to make: " + str(len(starmap)))
     
     with Pool(num_threads) as p:
-        result = p.starmap(stumpy.gpu_mpdist, starmap)
+        result = p.starmap(stumpy.mpdist, starmap)
         #print(result)
     
     
     return statistics.mean(result)
 
 
-# In[14]:
+# In[ ]:
 
 
 # TRAINING MODE
@@ -211,7 +220,7 @@ for i in tqdm(range(100)):
         final_scores[i][j] = calculate_scores_threaded(traces[i],traces[j],sample_size=2,subseq_len=250)
 
 
-# In[230]:
+# In[ ]:
 
 
 correct_count = 0
