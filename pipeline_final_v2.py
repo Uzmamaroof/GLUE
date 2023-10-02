@@ -28,8 +28,9 @@ if __name__ == "__main__":
 
 
     # In[2]:
-    import os
-    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+    import logging,os
+    logging.disable(logging.WARNING)
+    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
 
     try:
         mp.set_start_method('spawn', force=True)
