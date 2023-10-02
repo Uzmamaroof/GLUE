@@ -3,9 +3,6 @@
 
 # In[2]:
 
-
-get_ipython().run_line_magic('matplotlib', 'inline')
-
 import pandas as pd
 import stumpy
 import numpy as np
