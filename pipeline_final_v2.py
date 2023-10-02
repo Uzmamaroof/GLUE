@@ -27,10 +27,10 @@ if __name__ == '__main__':
 
 
     try:
-    mp.set_start_method('spawn', force=True)
-    print("Spawned")
+        mp.set_start_method('spawn', force=True)
+        print("Spawned")
     except RuntimeError:
-    pass
+        pass
 
 
     # In[ ]:
