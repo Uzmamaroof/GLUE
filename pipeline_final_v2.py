@@ -28,7 +28,8 @@ if __name__ == "__main__":
 
 
     # In[2]:
-
+    import os
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
     try:
         mp.set_start_method('spawn', force=True)
@@ -238,9 +239,9 @@ if __name__ == "__main__":
 
     final_scores = np.zeros((100,100))
 
-    for i in tqdm(range(1)):
-        for j in tqdm(range(i,1)):
-            final_scores[i][j] = calculate_scores_threaded(traces[i],traces[j],sample_size=2,subseq_len=250, num_threads=128)
+    for i in tqdm(range(100)):
+        for j in tqdm(range(i,100)):
+            final_scores[i][j] = calculate_scores_threaded(traces[i],traces[j],sample_size=15,subseq_len=250, num_threads=256)
         
                 
 
