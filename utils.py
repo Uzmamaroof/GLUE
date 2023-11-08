@@ -4,7 +4,6 @@
 # In[ ]:
 
 
-import pandas as pd
 import stumpy
 import numpy as np
 import datetime as dt
