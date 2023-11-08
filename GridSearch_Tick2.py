@@ -25,4 +25,4 @@ if __name__ == '__main__':
     parameter_list = np.array(np.meshgrid(shapelet_samples_list, shapelet_size_list, clf_samples_list)).T.reshape(-1,3)
     
     for parameters in parameter_list:
-        evaluate_parameters(parameters[0], parameters[1], parameters[2])
+        evaluate_parameters(parameters)
