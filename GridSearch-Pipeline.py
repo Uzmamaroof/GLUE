@@ -312,20 +312,19 @@ def evaluate_parameters(arr):
         pickle.dump(scores, f)
 
 
-# In[ ]:
 
 
-# shapelet_samples_list = [3, 4, 5]
-# shapelet_size_list = [300, 400, 500, 600]
-# clf_samples_list = [400000, 500000, 600000]
+if __name__ == '__main__':
+    shapelet_samples_list = [3, 4, 5]
+    shapelet_size_list = [300, 400, 500, 600]
+    clf_samples_list = [1000, 2000, 3000]
+
+    grid_parameters = np.array(np.meshgrid(shapelet_samples_list, shapelet_size_list, clf_samples_list)).T.reshape(-1,3)
+
+    print(grid_parameters.shape)
 
 
-shapelet_samples_list = [3, 4, 5]
-shapelet_size_list = [300, 400, 500, 600]
-clf_samples_list = [1000, 2000, 3000]
-
-grid_parameters = np.array(np.meshgrid(shapelet_samples_list, shapelet_size_list, clf_samples_list)).T.reshape(-1,3)
-
-print(grid_parameters.shape)
-
-evaluate_parameters([3,600,2000])
+    from utils import evaluate_parameters
+    
+    with Pool(12) as p:
+        p.map(evaluate_parameters, grid_parameters)
