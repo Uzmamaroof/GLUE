@@ -57,12 +57,7 @@ Output:
 
 def same_profile(trace, shapelet_size):
     
-    print("hi")
-
     c1_c1 = stumpy.stump(trace, shapelet_size)[:, 0].astype(float)
-
-    print("hello there")
-
     c1_c1[c1_c1 == np.inf] = np.nan
     
     return c1_c1
@@ -132,15 +127,11 @@ def generate_shapelets(num_traces, shapelet_size, save=True, filename="../shapel
         shapelets_i = np.zeros((100, len(trace_i)))
         #print(shapelets_i.shape)
         
-        
-
         # generate profile of i compared with itself
         ci_ci = same_profile(trace_i, shapelet_size)
-        
-        print("here")
 
         # loop over every other class and generate a profile for each one
-        for j in tqdm(range(100)):
+        for j in range(100):
             # don't compare i with itself 
             if i == j:
                 continue
