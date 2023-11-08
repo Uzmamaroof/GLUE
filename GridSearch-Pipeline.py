@@ -130,8 +130,10 @@ def generate_shapelets(num_traces, shapelet_size, save=True, filename="../shapel
         # generate profile of i compared with itself
         ci_ci = same_profile(trace_i, shapelet_size)
         
+        print("here")
+
         # loop over every other class and generate a profile for each one
-        for j in range(100):
+        for j in tqdm(range(100)):
             # don't compare i with itself 
             if i == j:
                 continue
